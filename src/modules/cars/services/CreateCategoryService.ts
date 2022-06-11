@@ -21,14 +21,9 @@ export class CreateCategoryService {
             throw new Error("Name and description are required");
         }
 
-        const category = new Category();
-        Object.assign(category, {
+        return this.categoriesRepository.create({
             name,
             description,
-            created_at: new Date(),
         });
-
-        this.categoriesRepository.create(category);
-        return category;
     }
 }

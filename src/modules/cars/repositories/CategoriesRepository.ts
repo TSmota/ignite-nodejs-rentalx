@@ -13,13 +13,14 @@ export class CategoryRepository implements ICategoriesRepository {
         Object.assign(category, {
             name,
             description,
-            created_at: new Date(),
         });
 
         this.categories.push(category);
+
+        return category;
     }
 
-    list(): Category[] {
+    getAll(): Category[] {
         return this.categories;
     }
 

@@ -7,7 +7,7 @@ const categoriesRoutes = Router();
 const categoriesRepository = new CategoryRepository();
 
 categoriesRoutes.get("/", (request, response) => {
-    const categories = categoriesRepository.list();
+    const categories = categoriesRepository.getAll();
 
     return response.json(categories);
 });
@@ -20,7 +20,10 @@ categoriesRoutes.post("/", async (request, response) => {
     );
 
     try {
-        await createCategoryService.execute({ name, description });
+        await createCategoryService.execute({
+            name,
+            description,
+        });
     } catch (error) {
         if (error instanceof Error) {
             return response.status(400).json({ error: error.message });
