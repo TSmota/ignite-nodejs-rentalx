@@ -1,0 +1,220 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "RentalX API Documentation",
+        "version": "1.0.0",
+        "contact": {
+            "email": "thiagomotasilva2000@gmail.com",
+            "url": "https://github.com/tsmota",
+            "name": "Thiago Mota Silva"
+        }
+    },
+    "components": {
+        "schemas": {
+            "error": {
+                "type": "object",
+                "description": "Error object",
+                "properties": {
+                    "error": {
+                        "type": "string",
+                        "description": "Error message"
+                    }
+                }
+            },
+            "category": {
+                "type": "object",
+                "description": "Category",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid",
+                        "description": "Category ID"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Category name"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Category description"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Category creation date"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Category update date"
+                    }
+                }
+            },
+            "specification": {
+                "type": "object",
+                "description": "Specification",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid",
+                        "description": "Specification ID"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Specification name"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Specification description"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Specification creation date"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Specification update date"
+                    }
+                }
+            }
+        }
+    },
+    "paths": {
+        "/categories": {
+            "post": {
+                "tags": [
+                    "Category"
+                ],
+                "operationId": "createCategory",
+                "summary": "Create a new category",
+                "description": "Create a new category",
+                "responses": {
+                    "201": {
+                        "description": "Category created"
+                    },
+                    "400": {
+                        "description": "Invalid category",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/error"
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Category 1"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "This is a category"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Category"
+                ],
+                "operationId": "getCategories",
+                "summary": "Get all categories",
+                "description": "Get all categories",
+                "responses": {
+                    "200": {
+                        "description": "Categories retrieved",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/category"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/specifications": {
+            "post": {
+                "tags": [
+                    "Specification"
+                ],
+                "operationId": "createSpecification",
+                "summary": "Create a new specification",
+                "description": "Create a new specification",
+                "responses": {
+                    "201": {
+                        "description": "Specification created"
+                    },
+                    "400": {
+                        "description": "Invalid specification",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/error"
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Specification 1"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "This is a specification"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Specification"
+                ],
+                "operationId": "getSpecifications",
+                "summary": "Get all specifications",
+                "description": "Get all specifications",
+                "responses": {
+                    "200": {
+                        "description": "Specifications retrieved",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/specification"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
