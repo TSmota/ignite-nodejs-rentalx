@@ -26,10 +26,12 @@ class ImportCategoryUseCase {
                     const [name, description] = line;
                     categories.push({ name, description });
                 })
-                .on("end", () => {
+                .on("end", async () => {
+                    await fs.promises.unlink(file.path);
                     resolve(categories);
                 })
-                .on("error", (error) => {
+                .on("error", async (error) => {
+                    await fs.promises.unlink(file.path);
                     reject(error);
                 });
         });
