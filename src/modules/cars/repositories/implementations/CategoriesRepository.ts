@@ -4,17 +4,17 @@ import {
     ICreateCategoryDTO,
 } from "../ICategoriesRepository";
 
-export class CategoryRepository implements ICategoriesRepository {
-    private static INSTANCE: CategoryRepository;
+export class CategoriesRepository implements ICategoriesRepository {
+    private static INSTANCE: CategoriesRepository;
 
     private constructor(private categories: Category[] = []) {}
 
-    public static getInstance(): CategoryRepository {
-        if (!CategoryRepository.INSTANCE) {
-            CategoryRepository.INSTANCE = new CategoryRepository();
+    public static getInstance(): CategoriesRepository {
+        if (!CategoriesRepository.INSTANCE) {
+            CategoriesRepository.INSTANCE = new CategoriesRepository();
         }
 
-        return CategoryRepository.INSTANCE;
+        return CategoriesRepository.INSTANCE;
     }
 
     create({ name, description }: ICreateCategoryDTO) {
